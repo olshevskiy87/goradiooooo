@@ -9,7 +9,7 @@ ARCH = $(word 2, $(PLATFORM))
 
 BINNAME = goradiooooo
 CMDPATH = main.go
-VERSION = 0.1.0
+VERSION = 0.1.1
 
 LD_FLAGS = "-w -s -X main.Version=$(VERSION)"
 

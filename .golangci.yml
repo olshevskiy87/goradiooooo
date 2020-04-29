@@ -38,6 +38,7 @@ issues:
   exclude:
     - don't use ALL_CAPS in Go names; use CamelCase
     - should not use ALL_CAPS in Go names; use CamelCase instead
+    - rewrite if-else to switch statement
 
 run:
     tests: false
