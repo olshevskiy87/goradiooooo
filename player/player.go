@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/olshevskiy87/goradiooooo/params"
+	"github.com/olshevskiy87/goradiooooo/utils"
 	"github.com/parnurzeal/gorequest"
 )
 
@@ -31,7 +32,7 @@ type RadioooooPlayer struct {
 }
 
 func New(params *params.Params) (*RadioooooPlayer, error) {
-	playerCmd, err := getSystemPlayerCmd()
+	playerCmd, err := utils.GetSystemPlayerCmd()
 	if err != nil {
 		return nil, fmt.Errorf("could not get system player: %v", err)
 	}

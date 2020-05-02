@@ -1,11 +1,11 @@
-package player
+package utils
 
 import (
 	"fmt"
 	"runtime"
 )
 
-func getSystemPlayerCmd() ([]string, error) {
+func GetSystemPlayerCmd() ([]string, error) {
 	var cmd []string
 	if runtime.GOOS == "linux" {
 		cmd = []string{"mpv", "--no-audio-display"}
