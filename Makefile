@@ -13,6 +13,8 @@ VERSION = 0.1.2
 
 LD_FLAGS = "-w -s -X main.Version=$(VERSION)"
 
+UPXBIN = $(shell command -v upx-ucl 2>/dev/null)
+
 .PHONY: deps_lint deps lint build build_all clean
 .DEFAULT_GOAL := build
 
@@ -35,12 +37,17 @@ build:
 
 $(PLATFORMS):
 	@echo building $(BINNAME) for $(OS)/$(ARCH)...
+	$(eval OUTBIN := "$(BINPATH)/$(BINNAME)_$(OS)_$(ARCH)")
 	@GOOS=$(OS) GOARCH=$(ARCH) $(GO) build \
-		-o $(BINPATH)/$(BINNAME)_$(OS)_$(ARCH) \
+		-o $(OUTBIN) \
 		-ldflags=$(LD_FLAGS) \
 		$(CMDPATH)
+ifneq ($(UPXBIN),)
+	@echo compress...
+	@$(UPXBIN) -qqf -o $(OUTBIN)-x $(OUTBIN)
+endif
 
 build_all: $(PLATFORMS)
 
 clean:
-	@rm -f $(BINPATH)/*
+	@rm -rf $(BINPATH)/*
