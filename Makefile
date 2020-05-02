@@ -21,7 +21,7 @@ deps_lint:
 		sh -s -- -b $(GOBIN) v1.21.0
 
 deps: deps_lint
-	$(GO) get -v -t -d  ./...
+	@$(GO) get -v -t -d  ./...
 
 lint:
 	@golangci-lint run
