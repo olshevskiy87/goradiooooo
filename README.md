@@ -4,6 +4,21 @@
 
 https://radiooooo.app command line interface written in Go
 
+## Usage
+
+```bash
+Usage: goradiooooo [--mode MODE] [--mood MOOD] [--decade DECADE] [--country COUNTRY]
+
+Options:
+  --mode MODE            the song selection mode: random, explore, taxi [default: random]
+  --mood MOOD, -m MOOD   the song mood: SLOW, FAST, WEIRD. default: all moods
+  --decade DECADE, -d DECADE
+                         the song decade from 1910 to 2010
+  --country COUNTRY, -c COUNTRY
+                         3-letters country iso-code (e.g. GBR)
+  --help, -h             display this help and exit
+```
+
 ## License
 
 MIT. See file LICENSE for details.
