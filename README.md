@@ -7,7 +7,7 @@ https://radiooooo.app command line interface written in Go
 ## Usage
 
 ```bash
-Usage: goradiooooo [--mode MODE] [--mood MOOD] [--decade DECADE] [--country COUNTRY]
+Usage: goradiooooo [--mode MODE] [--mood MOOD] [--decade DECADE] [--country COUNTRY] [--player PLAYER]
 
 Options:
   --mode MODE            the song selection mode: random, explore, taxi [default: random]
@@ -16,6 +16,7 @@ Options:
                          the song decade from 1910 to 2010
   --country COUNTRY, -c COUNTRY
                          3-letters country iso-code (e.g. GBR)
+  --player PLAYER        custom system player command
   --help, -h             display this help and exit
 ```
 
