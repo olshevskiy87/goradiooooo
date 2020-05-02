@@ -1,18 +1,19 @@
 package player
 
 import (
-	"encoding/json"
 	"fmt"
 	"os/exec"
 	"runtime"
 	"syscall"
 	"time"
 
+	"github.com/olshevskiy87/goradiooooo/params"
 	"github.com/parnurzeal/gorequest"
 )
 
 const (
 	URL_PLAY_RANDOM = "https://radiooooo.app/play/random"
+	URL_PLAY        = "https://radiooooo.app/play"
 )
 
 var (
@@ -25,75 +26,27 @@ var (
 type RadioooooPlayer struct {
 	requestAgent *gorequest.SuperAgent
 	playerCmd    []string
+	url          string
+	params       *params.Params
 }
 
-func New() (*RadioooooPlayer, error) {
+func New(params *params.Params) (*RadioooooPlayer, error) {
 	playerCmd, err := getSystemPlayerCmd()
 	if err != nil {
 		return nil, fmt.Errorf("could not get system player: %v", err)
 	}
-	return &RadioooooPlayer{
-		gorequest.New().Timeout(10*time.Second).
-			Set("User-Agent", userAgent).
-			Set("Accept", "application/json").
-			Set("Content-Type", "application/json"),
-		playerCmd,
-	}, nil
-}
+	requestAgent := gorequest.New().Timeout(10*time.Second).
+		Set("User-Agent", userAgent).
+		Set("Accept", "application/json").
+		Set("Content-Type", "application/json")
 
-func (r *RadioooooPlayer) SetSystemPlayerCmd(cmd []string) {
-	r.playerCmd = cmd
-}
-
-func (r *RadioooooPlayer) GetNextSongLink() (*Song, error) {
-	_, responseBody, errs := r.requestAgent.
-		Post(URL_PLAY_RANDOM).
-		Send(`{"mode":"random","moods":["SLOW","FAST","WEIRD"]}`).
-		End()
-	if errs != nil {
-		return nil, fmt.Errorf("could not perform request with url \"%s\"", URL_PLAY_RANDOM)
+	p := &RadioooooPlayer{
+		requestAgent: requestAgent,
+		playerCmd:    playerCmd,
+		url:          "",
 	}
-
-	var songInfo map[string]interface{}
-	err := json.Unmarshal([]byte(responseBody), &songInfo)
-	if err != nil {
-		return nil, fmt.Errorf("could not parse json: %v", err)
-	}
-
-	links, ok := songInfo["links"]
-	if !ok {
-		return nil, fmt.Errorf("no key \"links\" in song info")
-	}
-
-	linksStr := links.(map[string]interface{})
-	linksLen := len(linksStr)
-	if linksLen == 0 {
-		return nil, fmt.Errorf("no song links in song info")
-	}
-
-	song := &Song{
-		Links: make(map[string]string, linksLen),
-	}
-	for format, link := range linksStr {
-		song.Links[format] = link.(string)
-	}
-	if artist, ok := songInfo["artist"]; ok {
-		song.Artist = artist.(string)
-	}
-	if album, ok := songInfo["album"]; ok {
-		song.Album = album.(string)
-	}
-	if title, ok := songInfo["title"]; ok {
-		song.Title = title.(string)
-	}
-	if year, ok := songInfo["year"]; ok {
-		song.Year = year.(string)
-	}
-	if country, ok := songInfo["country"]; ok {
-		song.Country = country.(string)
-	}
-
-	return song, nil
+	p.SetParams(params)
+	return p, nil
 }
 
 func (r *RadioooooPlayer) Play(song *Song) error {
