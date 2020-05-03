@@ -1,0 +1,12 @@
+# github.com/alexflint/go-arg v1.3.0
+github.com/alexflint/go-arg
+# github.com/alexflint/go-scalar v1.0.0
+github.com/alexflint/go-scalar
+# github.com/parnurzeal/gorequest v0.2.16
+github.com/parnurzeal/gorequest
+# github.com/pkg/errors v0.9.1
+github.com/pkg/errors
+# golang.org/x/net v0.0.0-20200501053045-e0ff5e5a1de5
+golang.org/x/net/publicsuffix
+# moul.io/http2curl v1.0.0
+moul.io/http2curl
