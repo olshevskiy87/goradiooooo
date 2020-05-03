@@ -9,7 +9,7 @@ import (
 func GetSystemPlayerCmd() ([]string, error) {
 	var cmd []string
 	if runtime.GOOS == "linux" {
-		cmd = []string{"mpv", "--no-audio-display"}
+		cmd = []string{"mpv", "--no-audio-display", "--no-video", "--really-quiet"}
 	} else if runtime.GOOS == "darwin" {
 		cmd = []string{"play"}
 	} else {

@@ -2,6 +2,7 @@ package player
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"runtime"
 	"syscall"
@@ -65,6 +66,7 @@ func (r *RadioooooPlayer) Play(song *Song) error {
 	}
 	cmdName, cmdArgs := r.playerCmd[0], append(r.playerCmd[1:], songLink)
 	cmd := exec.Command(cmdName, cmdArgs...)
+	cmd.Stdout = os.Stdout
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Pdeathsig: syscall.SIGTERM,
 	}
