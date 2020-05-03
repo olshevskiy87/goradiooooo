@@ -34,7 +34,9 @@ type RadioooooPlayer struct {
 func New(params *params.Params) (*RadioooooPlayer, error) {
 	playerCmd, err := utils.GetSystemPlayerCmd()
 	if err != nil {
-		return nil, fmt.Errorf("could not get system player: %v", err)
+		if _, ok := err.(*utils.ErrorNoDefaultPlayer); !ok {
+			return nil, fmt.Errorf("could not get system player: %v", err)
+		}
 	}
 	requestAgent := gorequest.New().Timeout(10*time.Second).
 		Set("User-Agent", userAgent).
@@ -51,6 +53,9 @@ func New(params *params.Params) (*RadioooooPlayer, error) {
 }
 
 func (r *RadioooooPlayer) Play(song *Song) error {
+	if len(r.playerCmd) == 0 {
+		return &ErrorPlayerNotSpecified{"system player command is not specified"}
+	}
 	var songLink string
 	for _, link := range song.Links {
 		songLink = link

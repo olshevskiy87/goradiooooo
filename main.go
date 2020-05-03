@@ -73,6 +73,9 @@ func main() {
 		err = radioPlayer.Play(song)
 		if err != nil {
 			fmt.Printf("could not play song: %v\n", err)
+			if _, ok := err.(*player.ErrorPlayerNotSpecified); ok {
+				os.Exit(1)
+			}
 			continue
 		}
 	}

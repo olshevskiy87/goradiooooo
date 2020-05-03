@@ -17,7 +17,7 @@ func GetSystemPlayerCmd() ([]string, error) {
 	}
 	_, err := exec.LookPath(cmd[0])
 	if err != nil {
-		return nil, fmt.Errorf("command \"%s\" is not available in your system", cmd[0])
+		return nil, &ErrorNoDefaultPlayer{cmd[0]}
 	}
 	return cmd, nil
 }
