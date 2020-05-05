@@ -15,7 +15,7 @@ type Params struct {
 func New(pMode string, pMoods []string, pDecades []Decade, pCountries []string) (*Params, error) {
 	mode, err := canonicalizeMode(pMode)
 	if err != nil {
-		return nil, fmt.Errorf("could not canonicalize mode \"%s\": %v", mode, err)
+		return nil, fmt.Errorf("could not canonicalize mode \"%s\": %v", pMode, err)
 	}
 
 	var moods []string
@@ -39,7 +39,7 @@ func New(pMode string, pMoods []string, pDecades []Decade, pCountries []string) 
 	}
 
 	if (mode == MODE_TAXI || mode == MODE_EXPLORE) && (len(decades) == 0 || len(countries) == 0) {
-		return nil, fmt.Errorf("decades and countries must be specified for mode \"%s\"", mode)
+		return nil, fmt.Errorf("decades and countries must be specified for mode \"%s\"", pMode)
 	}
 
 	return &Params{
