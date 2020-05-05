@@ -44,7 +44,7 @@ $(PLATFORMS):
 		$(CMDPATH)
 ifneq ($(UPXBIN),)
 	@echo compress...
-	@$(UPXBIN) -qqf -o $(OUTBIN)-x $(OUTBIN)
+	@$(UPXBIN) -qqf $(OUTBIN)
 endif
 
 build_all: $(PLATFORMS)
