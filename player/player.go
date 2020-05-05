@@ -5,7 +5,6 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
-	"syscall"
 	"time"
 
 	"github.com/olshevskiy87/goradiooooo/params"
@@ -67,9 +66,7 @@ func (r *RadioooooPlayer) Play(song *Song) error {
 	cmdName, cmdArgs := r.playerCmd[0], append(r.playerCmd[1:], songLink)
 	cmd := exec.Command(cmdName, cmdArgs...)
 	cmd.Stdout = os.Stdout
-	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Pdeathsig: syscall.SIGTERM,
-	}
+	setSysProcAttrs(cmd)
 	err := cmd.Run()
 	if err != nil {
 		return fmt.Errorf("could not run command %s with args %v: %v", cmdName, cmdArgs, err)
