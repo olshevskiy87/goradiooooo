@@ -32,11 +32,9 @@ type RadioooooPlayer struct {
 }
 
 func New(params *params.Params) (*RadioooooPlayer, error) {
-	playerCmd, err := utils.GetSystemPlayerCmd()
+	playerCmd, err := utils.GetSystemPlayerCmd(params.Player)
 	if err != nil {
-		if _, ok := err.(*utils.ErrorNoDefaultPlayer); !ok {
-			return nil, fmt.Errorf("could not get system player: %v", err)
-		}
+		return nil, fmt.Errorf("could not get system player: %v", err)
 	}
 	requestAgent := gorequest.New().Timeout(10*time.Second).
 		Set("User-Agent", userAgent).

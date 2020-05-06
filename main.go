@@ -43,6 +43,9 @@ func main() {
 		fmt.Printf("could not initialize player params: %v\n", err)
 		os.Exit(1)
 	}
+	if args.SysPlayer != "" {
+		playerParams.Player = []string{args.SysPlayer}
+	}
 
 	fmt.Printf("press Ctrl-C to exit\n")
 
@@ -50,13 +53,6 @@ func main() {
 	if err != nil {
 		fmt.Printf("could not initialize player: %v\n", err)
 		os.Exit(1)
-	}
-	if args.SysPlayer != "" {
-		err = radioPlayer.SetSystemPlayerCmd([]string{args.SysPlayer})
-		if err != nil {
-			fmt.Printf("could not set custom system player: %v\n", err)
-			os.Exit(1)
-		}
 	}
 	for {
 		time.Sleep(DELAY_BETWEEN_SONGS * time.Second)

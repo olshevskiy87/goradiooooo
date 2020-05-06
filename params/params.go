@@ -10,6 +10,7 @@ type Params struct {
 	Moods     []string
 	Decades   []Decade
 	Countries []string
+	Player    []string
 }
 
 func New(pMode string, pMoods []string, pDecades []Decade, pCountries []string) (*Params, error) {
@@ -43,10 +44,10 @@ func New(pMode string, pMoods []string, pDecades []Decade, pCountries []string) 
 	}
 
 	return &Params{
-		mode,
-		moods,
-		decades,
-		countries,
+		Mode:      mode,
+		Moods:     moods,
+		Decades:   decades,
+		Countries: countries,
 	}, nil
 }
 
