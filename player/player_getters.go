@@ -63,7 +63,7 @@ func (r *RadioooooPlayer) makeSong(info map[string]interface{}) (*Song, error) {
 	return song, nil
 }
 
-func (r *RadioooooPlayer) GetNextSongLink() (*Song, error) {
+func (r *RadioooooPlayer) GetNextSong() (*Song, error) {
 	songResponse, err := r.requestSongInfo()
 	if err != nil {
 		return nil, fmt.Errorf("could not request song info: %v", err)

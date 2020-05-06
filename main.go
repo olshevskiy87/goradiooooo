@@ -58,7 +58,7 @@ func main() {
 	for {
 		time.Sleep(DELAY_BETWEEN_SONGS * time.Second)
 
-		song, err := radioPlayer.GetNextSongLink()
+		song, err := radioPlayer.GetNextSong()
 		if err != nil {
 			fmt.Printf("could not get next song: %v\n", err)
 			if _, ok := err.(*player.ErrorInJSON); ok {
