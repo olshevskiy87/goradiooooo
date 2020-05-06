@@ -13,7 +13,7 @@ import (
 type argsType struct {
 	Mode      string          `arg:"--mode" help:"the song selection mode: random, explore, taxi"`
 	Moods     []string        `arg:"--mood,-m,separate" help:"the song mood: SLOW, FAST, WEIRD. default: all moods"`
-	Decades   []params.Decade `arg:"--decade,-d,separate" help:"the song decade from 1910 to 2010"`
+	Decades   []params.Decade `arg:"--decade,-d,separate" help:"the song decade from 1900 to 2020"`
 	Countries []string        `arg:"--country,-c,separate" help:"3-letters country iso-code (e.g. GBR)"`
 	SysPlayer string          `arg:"--player" help:"custom system player command"`
 }

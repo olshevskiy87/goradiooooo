@@ -7,8 +7,8 @@ import (
 type Decade uint16
 
 const (
-	DECADE_MIN = 1910
-	DECADE_MAX = 2010
+	DECADE_MIN = 1900
+	DECADE_MAX = 2020
 )
 
 func canonicalizeDecades(pDecades []Decade) ([]Decade, error) {
