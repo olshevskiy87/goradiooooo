@@ -47,13 +47,14 @@ func main() {
 		playerParams.Player = []string{args.SysPlayer}
 	}
 
-	fmt.Printf("press Ctrl-C to exit\n")
-
 	radioPlayer, err := player.New(playerParams)
 	if err != nil {
 		fmt.Printf("could not initialize player: %v\n", err)
 		os.Exit(1)
 	}
+
+	fmt.Printf("press Ctrl-C to exit\n")
+
 	for {
 		time.Sleep(DELAY_BETWEEN_SONGS * time.Second)
 
