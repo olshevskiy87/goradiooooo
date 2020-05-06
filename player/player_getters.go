@@ -11,7 +11,6 @@ func (r *RadioooooPlayer) GetNextSongLink() (*Song, error) {
 	if err != nil {
 		return nil, fmt.Errorf("could not prepare request payload: %v", err)
 	}
-	//fmt.Printf("payload: %v\n", payload)
 
 	response, responseBody, errs := r.requestAgent.
 		Post(r.url).
@@ -64,6 +63,9 @@ func (r *RadioooooPlayer) GetNextSongLink() (*Song, error) {
 	}
 	if country, ok := songInfo["country"]; ok {
 		song.Country = country.(string)
+	}
+	if mood, ok := songInfo["mood"]; ok {
+		song.Mood = mood.(string)
 	}
 
 	return song, nil

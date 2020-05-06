@@ -9,6 +9,7 @@ type Song struct {
 	Title   string
 	Year    string
 	Country string
+	Mood    string
 }
 
 func (s *Song) String() string {
@@ -30,7 +31,11 @@ func (s *Song) String() string {
 	}
 	title := ""
 	if s.Title != "" {
-		title = fmt.Sprintf(", title: %s", s.Title)
+		if s.Mood != "" {
+			title = fmt.Sprintf(", title: %s (%s)", s.Title, s.Mood)
+		} else {
+			title = fmt.Sprintf(", title: %s", s.Title)
+		}
 	}
 	return fmt.Sprintf("artist: %s%s%s", artist, album, title)
 }
