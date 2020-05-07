@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 func (r *RadioooooPlayer) requestSongInfo() (string, error) {
@@ -48,13 +49,13 @@ func (r *RadioooooPlayer) makeSong(info map[string]interface{}) (*Song, error) {
 		}
 	}
 	if artist, ok := info["artist"]; ok && artist != nil {
-		song.Artist = artist.(string)
+		song.Artist = strings.TrimSpace(artist.(string))
 	}
 	if album, ok := info["album"]; ok && album != nil {
-		song.Album = album.(string)
+		song.Album = strings.TrimSpace(album.(string))
 	}
 	if title, ok := info["title"]; ok && title != nil {
-		song.Title = title.(string)
+		song.Title = strings.TrimSpace(title.(string))
 	}
 	if year, ok := info["year"]; ok && year != nil {
 		song.Year = year.(string)
