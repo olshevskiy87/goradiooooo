@@ -56,6 +56,9 @@ func (r *RadioooooPlayer) Play(song *Song) error {
 	}
 	var songLink string
 	for _, link := range song.Links {
+		if link == "" {
+			continue
+		}
 		songLink = link
 		break
 	}
