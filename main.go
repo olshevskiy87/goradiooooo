@@ -26,9 +26,11 @@ var (
 	Version = "-"
 )
 
-func main() {
-	fmt.Printf("version: %s\n", Version)
+func (argsType) Version() string {
+	return fmt.Sprintf("goradiooooo %s", Version)
+}
 
+func main() {
 	var args argsType
 	args.Mode = params.MODE_RANDOM
 	arg.MustParse(&args)

@@ -18,6 +18,7 @@ Options:
                          3-letters country iso-code (e.g. GBR)
   --player PLAYER        custom system player command
   --help, -h             display this help and exit
+  --version              display version and exit
 ```
 
 ## License
