@@ -57,6 +57,7 @@ func (r *RadioooooPlayer) Play(song *Song) error {
 	var songLink string
 	for _, link := range song.Links {
 		songLink = link
+		break
 	}
 	if songLink == "" {
 		return fmt.Errorf("song link is empty")
