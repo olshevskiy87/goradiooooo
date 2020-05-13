@@ -12,9 +12,5 @@ func AskYN(msg string) bool {
 	if err != nil {
 		return false
 	}
-
-	if in == "y" || in == "Y" {
-		return true
-	}
-	return false
+	return in == "y" || in == "Y"
 }
