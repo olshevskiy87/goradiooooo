@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"runtime"
 	"time"
 
 	"github.com/olshevskiy87/goradiooooo/params"
@@ -15,13 +14,6 @@ import (
 const (
 	URL_PLAY_RANDOM = "https://radiooooo.app/play/random"
 	URL_PLAY        = "https://radiooooo.app/play"
-)
-
-var (
-	userAgent = fmt.Sprintf(
-		"%s_%s:goradiooooo (by /u/olshevskiy87)",
-		runtime.GOOS, runtime.GOARCH,
-	)
 )
 
 type RadioooooPlayer struct {
@@ -37,7 +29,7 @@ func New(params *params.Params) (*RadioooooPlayer, error) {
 		return nil, fmt.Errorf("could not get system player: %v", err)
 	}
 	requestAgent := gorequest.New().Timeout(10*time.Second).
-		Set("User-Agent", userAgent).
+		Set("User-Agent", utils.UserAgent).
 		Set("Accept", "application/json").
 		Set("Content-Type", "application/json")
 

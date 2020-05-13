@@ -49,8 +49,13 @@ func New(pMode string, pMoods []string, pDecades []Decade, pCountries []string) 
 		return nil, fmt.Errorf("could not canonicalize decades %v: %v", pDecades, err)
 	}
 
-	if (mode == MODE_TAXI || mode == MODE_EXPLORE) && (len(decades) == 0 || len(countries) == 0) {
-		return nil, fmt.Errorf("decades and countries must be specified for mode \"%s\"", mode)
+	countriesLen := len(countries)
+	if (mode == MODE_TAXI || mode == MODE_EXPLORE) && (len(decades) == 0 || countriesLen == 0) {
+		errMsg := fmt.Sprintf("decades and countries must be specified for mode \"%s\"", mode)
+		if countriesLen == 0 {
+			return nil, &NoCountryError{errMsg}
+		}
+		return nil, fmt.Errorf(errMsg)
 	}
 
 	return &Params{

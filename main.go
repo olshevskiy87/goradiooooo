@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/alexflint/go-arg"
 	"github.com/olshevskiy87/goradiooooo/params"
 	"github.com/olshevskiy87/goradiooooo/player"
+	"github.com/olshevskiy87/goradiooooo/utils"
 )
 
 type argsType struct {
@@ -43,6 +45,19 @@ func main() {
 	)
 	if err != nil {
 		fmt.Printf("could not initialize player params: %v\n", err)
+		if _, ok := err.(*params.NoCountryError); ok &&
+			len(args.Decades) == 1 &&
+			utils.AskYN("show all available countries? [y,N]") {
+
+			decade := args.Decades[0]
+			countries, err := params.GetAvailableCountries(args.Moods, decade)
+			if err != nil {
+				fmt.Printf("could not get available countries for decade %d: %v\n", decade, err)
+				os.Exit(1)
+			}
+			fmt.Printf("available countries for decade %d: %s\n", decade, strings.Join(countries, ", "))
+			return
+		}
 		os.Exit(1)
 	}
 	if args.SysPlayer != "" {
