@@ -14,7 +14,7 @@ func GetSystemPlayerCmd(customCmd []string) ([]string, error) {
 		} else if runtime.GOOS == "darwin" {
 			cmd = []string{"play"}
 		} else {
-			return nil, fmt.Errorf("unsupported operating system")
+			return nil, fmt.Errorf("the default player for your OS is not defined. please, set it with option \"--player\"")
 		}
 	} else {
 		cmd = make([]string, len(customCmd))
