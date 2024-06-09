@@ -13,7 +13,7 @@ Options:
   --mode MODE            the song selection mode: random, explore, taxi [default: random]
   --mood MOOD, -m MOOD   the song mood: SLOW, FAST, WEIRD. default: all moods
   --decade DECADE, -d DECADE
-                         the song decade from 1900 to 2020
+                         the song decade from 1900 to 2020 or 2070
   --country COUNTRY, -c COUNTRY
                          3-letters country iso-code (e.g. GBR)
   --player PLAYER        custom system player command
