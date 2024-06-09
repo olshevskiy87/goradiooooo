@@ -1,12 +1,22 @@
 # github.com/alexflint/go-arg v1.3.0
+## explicit; go 1.13
 github.com/alexflint/go-arg
 # github.com/alexflint/go-scalar v1.0.0
+## explicit
 github.com/alexflint/go-scalar
+# github.com/elazarl/goproxy v0.0.0-20200426045556-49ad98f6dac1
+## explicit
 # github.com/parnurzeal/gorequest v0.2.16
+## explicit
 github.com/parnurzeal/gorequest
 # github.com/pkg/errors v0.9.1
+## explicit
 github.com/pkg/errors
+# github.com/smartystreets/goconvey v1.6.4
+## explicit
 # golang.org/x/net v0.0.0-20200501053045-e0ff5e5a1de5
+## explicit; go 1.11
 golang.org/x/net/publicsuffix
 # moul.io/http2curl v1.0.0
+## explicit
 moul.io/http2curl
